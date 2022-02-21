@@ -35,8 +35,8 @@ public class NoteResource {
         return new ResponseEntity<>(newNote, HttpStatus.OK);
     }
 
-    @PutMapping("/save")
-    public ResponseEntity<Note> saveNote(@RequestBody Note note) {
+    @PutMapping("/update")
+    public ResponseEntity<Note> updateNote(@RequestBody Note note) {
         Note newNote = noteService.saveNote(note);
         return new ResponseEntity<>(newNote, HttpStatus.OK);
     }

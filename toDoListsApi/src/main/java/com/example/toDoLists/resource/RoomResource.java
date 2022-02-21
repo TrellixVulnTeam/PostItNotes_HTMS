@@ -31,8 +31,8 @@ public class RoomResource {
         return new ResponseEntity<>(room, HttpStatus.OK);
     }
 
-    @PutMapping("/save")
-    public ResponseEntity<Room> saveRoom(@RequestBody Room room) {
+    @PutMapping("/update")
+    public ResponseEntity<Room> updateRoom(@RequestBody Room room) {
         Room newRoom = roomService.saveRoom(room);
         return new ResponseEntity<>(newRoom, HttpStatus.OK);
     }
