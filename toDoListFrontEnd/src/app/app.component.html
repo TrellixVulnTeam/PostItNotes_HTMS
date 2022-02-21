@@ -16,5 +16,18 @@
           <button type="button" class="btn btn-light ms-auto">Change Room!</button>
     </nav>
 
+
+  <div *ngFor="let room of rooms">
+      <div>
+          {{room.id}}
+      </div>
+  </div>
+
+  <div *ngFor="let note of notes">
+      <div>
+          {{note.roomId.id}}
+      </div>
+  </div>
+
   </body>
 </html>
