@@ -1,12 +1,17 @@
-<div>Some tags before</div>
+<br>
+<br>
+<br>
+<br>
   <owl-carousel-o [options]="customOptions">
     <ng-container *ngFor="let note of notes">
         <ng-template carouselSlide >
-          <div class="note">
+          <div class="note" style="background-color: {{note.color}};">
             {{note.text}}
+            <button type="button" class="btn btn-light position-absolute bottom-0 start-0 btn-outline-secondary" name="editButton"><i class="material-icons">settings</i></button>
+            <button type="button" class="btn btn-light position-absolute bottom-0 end-0 btn-outline-secondary" name="deleteButton"><i class="material-icons">delete</i></button>
           </div>
         </ng-template>
+
     </ng-container>
 
   </owl-carousel-o>
-  <div>Some tags after</div>

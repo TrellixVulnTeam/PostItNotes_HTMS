@@ -1,3 +1,19 @@
 .note{
-  background-color: red;
+  height: 40em;
+  border-style:solid solid solid none;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.btn {
+  display:block;
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+.empty-space{
+  height: 25em;
+  width: 5em;
 }
