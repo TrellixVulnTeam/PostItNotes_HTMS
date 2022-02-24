@@ -4,4 +4,6 @@ export interface Note {
   text: string;
   color: string;
   roomId: Room;
+
+
 }

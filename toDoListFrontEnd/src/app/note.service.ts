@@ -26,4 +26,5 @@ export class NoteService {
   public deleteNote(noteId: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/note/delete/${noteId}`);
   }
+
 }

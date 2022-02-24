@@ -14,11 +14,75 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" style="color:white;">To Do Lists</a>
-      <button type="button" class="btn btn-light">Add</button>
-          <button type="button" class="btn btn-light ms-auto">Change Room</button>
+      <button type="button" class="btn btn-light" data-bs-toggle='modal' data-bs-target='#addNoteModal'>Add</button>
+          <button type="button" class="btn btn-light ms-auto" data-bs-toggle='modal' data-bs-target='#roomModal' if=roomChangeButton>Change Room</button>
     </nav>
+    <div *ngIf="curRoom != -1 ">
+        <h2>Current room: {{curRoomKey}}</h2>
+    </div>
+    <div class="container" id="button-container"></div>
+      <app-carouselholder [notesParent]="notesToShow"  [roomsParent]="rooms"  (getNotes)="getNotes()" ></app-carouselholder>
 
-    <app-carouselholder></app-carouselholder>
+    <!-- add Modal -->
+      <div class="modal fade" id="addNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form #addForm="ngForm" (ngSubmit)="onAddNote(addForm)">
+               <div class="form-group">
+                  <label for="text">Text</label>
+                  <input type="text" ngModel name="text" class="form-control" id="text" placeholder="Text" required>
+               </div>
+               <div class="form-group">
+                  <label for="color">Color</label>
+                  <input type="color" ngModel name="color" class="form-control" id="color" required>
+               </div>
+               <div class="form-group">
+                  <label for="roomId">Room</label>
+                  <select name = "dropdown" ngModel name="roomId" class="form-control" id="roomId" required>
+                        <option *ngFor="let room of rooms" value ={{room.id}} >{{room.roomKey}}</option>
+                 </select>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-add-form">Close</button>
+                  <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+               </div>
+               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- room Modal -->
+      <div class="modal" id="roomModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Change room</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #changeRoomForm="ngForm"  >
+                <div class="form-group">
+                  <label for="roomId">Room</label>
+                  <select name = "dropdown" ngModel name="id" class="form-control" id="id">
+                        <option *ngFor="let room of rooms" value ={{room.id}} >{{room.roomKey}}</option>
+                 </select>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-changeRoom-button"><i class="material-icons">close</i></button>
+              <button (click)="onChangeRoom(changeRoomForm.value.id)" [disabled]="changeRoomForm.invalid" type="button" class="btn btn-primary"><i class="material-icons">check</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
   </body>
 </html>

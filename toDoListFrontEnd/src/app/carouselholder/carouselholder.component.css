@@ -10,10 +10,5 @@
   height: 3em;
   width: 3em;
   border-radius: 50%;
-  border: 1px solid red;
-}
-
-.empty-space{
-  height: 25em;
-  width: 5em;
+  border: 1px solid black;
 }

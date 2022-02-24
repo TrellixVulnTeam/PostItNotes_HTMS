@@ -26,4 +26,8 @@ export class RoomService {
   public deleteRoom(roomId: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/delete/${roomId}`);
   }
+
+  public toJson(room: Room): string{
+    return JSON.stringify(room);
+  }
 }
